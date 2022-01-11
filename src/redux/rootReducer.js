@@ -11,7 +11,7 @@ import passwordReducer from "./password/passwordReducer";
 const persistConfig = {
     key: "root",
     storage: storage,
-    whitelist: [],
+    whitelist: [''],
   };
   
   const rootReducer = combineReducers({

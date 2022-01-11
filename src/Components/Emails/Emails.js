@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { compose } from "redux";
 import {
@@ -15,7 +15,10 @@ function Emails() {
   const emails = useSelector((state) => state.emails.emails);
   const total = useSelector((state) => state.emails.total);
   const password = useSelector(state => state.password.password);
-  const dispatch = useDispatch()
+  const dispatch = useDispatch();
+  const [scroll, setScroll] = useState(total);
+ 
+
 
   const handleDelete = (uid) => {
     
@@ -44,7 +47,7 @@ function Emails() {
 
         var config2 = {
           method: "post",
-          url: "http://cristianherreradevapi.herokuapp.com/api/emails?limite=20&desde=0",
+          url: `http://cristianherreradevapi.herokuapp.com/api/emails`,
           headers: {},
           data: data2,
         };
@@ -76,6 +79,39 @@ function Emails() {
       });
   };
 
+  
+
+  //
+  window.addEventListener("scroll", async () => {
+
+    const { scrollTop, clientHeight, scrollHeight } = document.documentElement;
+
+    if (scrollTop + clientHeight >= scrollHeight -1) {
+      console.log("Estoy en el final?");
+
+
+      var data3 = {password: password }
+
+      var config3 = {
+        method: "post",
+        url: `http://cristianherreradevapi.herokuapp.com/api/emails?limite=5&desde=${(scroll)}`,
+        headers: {},
+        data: data3,
+      };
+     
+    }
+
+    
+
+      
+  
+      
+       
+   
+    })
+   
+
+
   return (
     <EmailsContainer>
       <TotalContainer>Total Emails: {total}</TotalContainer>
@@ -103,6 +139,9 @@ function Emails() {
               </div>
               <div>Email: </div>
               <div>{value.email} </div>
+              
+              <div>Date: {value.fecha}</div>
+              
               <div
                 style={{ display: "flex", justifyContent: "space-between" }}
               ></div>

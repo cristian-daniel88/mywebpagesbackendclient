@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { emailsAction, totalAction } from "../../redux/emails/emailsAction";
 import { passwordAction } from "../../redux/password/passwordActions";
 import { Form, FormContainer } from "./LoginStyles";
@@ -8,6 +8,7 @@ const axios = require("axios");
 function Login() {
   const [password, setPassword] = useState("");
   const dispatch = useDispatch();
+  const total = useSelector((state) => state.emails.total);
 
   const handSubmit = (e) => {
     e.preventDefault();
@@ -16,7 +17,7 @@ function Login() {
 
     var config = {
       method: "post",
-      url: "http://cristianherreradevapi.herokuapp.com/api/emails?limite=20&desde=0",
+      url: `http://cristianherreradevapi.herokuapp.com/api/emails`,
       headers: {},
       data: data,
     };
