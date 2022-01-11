@@ -4,7 +4,7 @@ import { emailsAction } from "../redux/emails/emailsAction";
 
 
 export const axiosDelete = (uid, password, dispatch)=> {
-      let emails;
+ 
   
     if (uid) {
     }

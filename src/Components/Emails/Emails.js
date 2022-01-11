@@ -11,7 +11,7 @@ import { FaTrashAlt } from "react-icons/fa";
 
 import { axiosDelete } from "../../axios/axios";
 import { passwordAction } from "../../redux/password/passwordActions";
-import { emailsAction, totalAction } from "../../redux/emails/emailsAction";
+import { emailsAction, emailsDeleteAction, totalAction } from "../../redux/emails/emailsAction";
 import axios from "axios";
 import { scrollDownAction, scrollMenos5 } from "../../redux/scroll/scrollActions";
 
@@ -28,34 +28,40 @@ function Emails() {
 
   const handleDelete = async (uid) => {
     axiosDelete(uid, password);
-    const data = { password: password };
-    const config = {
-      method: "post",
-      url: `http://cristianherreradevapi.herokuapp.com/api/emails`,
-      headers: {},
-      data: data,
-    };
-    axios(config)
-      .then(function (response) {
-        let error = response.data.msg;
 
-        if (error === "denegado") {
-          return;
-        }
+   dispatch(emailsDeleteAction(uid))
 
-        dispatch(passwordAction(password));
 
-        let emails = response.data.emails;
-        dispatch(emailsAction(emails));
+    // const data = { password: password };
+    // const config = {
+    //   method: "post",
+    //   url: `http://cristianherreradevapi.herokuapp.com/api/emails`,
+    //   headers: {},
+    //   data: data,
+    // };
+    // axios(config)
+    //   .then(function (response) {
+    //     let error = response.data.msg;
 
-        let totalEmails = response.data.total;
-        dispatch(totalAction(totalEmails));
+    //     if (error === "denegado") {
+    //       return;
+    //     }
 
-        dispatch(scrollDownAction(totalEmails))
-      })
-      .catch(function (error) {
-        console.log(error);
-      });
+
+    //     let emails = response.data.emails;
+    //     dispatch(emailsAction(emails));
+
+    //     let totalEmails = response.data.total;
+    //     dispatch(totalAction(totalEmails));
+
+    //     dispatch(scrollDownAction(totalEmails))
+    //   })
+    //   .catch(function (error) {
+    //     console.log(error);
+    //   });
+
+
+
   };
 
   async function scrollDown () {

@@ -17,9 +17,9 @@ export const totalAction = (value) => ({
     
 })
 
-export const emailsDeleteAction = (uid, password) => ({
+export const emailsDeleteAction = (uid) => ({
     type: DELETE,
-    uid,
-    password
+    payload: uid,
+    
     
 })

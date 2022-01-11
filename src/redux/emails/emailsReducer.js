@@ -1,5 +1,6 @@
 import { axiosDelete } from '../../axios/axios';
 import { DELETE, EMAILS, TOTAL } from './emailsAction';
+import { deleteUtil } from './emailUtils';
 
 
 
@@ -32,7 +33,7 @@ const emailsReducer = (state = INITIAL_STATE, action) => {
        case DELETE:
          return {
            ...state,
-           emails: axiosDelete(action.uid, action.password)
+           emails: deleteUtil( state.emails,action.payload)
          }
   
   
