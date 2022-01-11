@@ -1,21 +1,23 @@
 import React, { useState } from "react";
-import { useDispatch, useSelector } from "react-redux";
+import { useDispatch} from "react-redux";
 import { emailsAction, totalAction } from "../../redux/emails/emailsAction";
 import { passwordAction } from "../../redux/password/passwordActions";
+import { scrollDownAction} from "../../redux/scroll/scrollActions";
 import { Form, FormContainer } from "./LoginStyles";
 const axios = require("axios");
 
 function Login() {
   const [password, setPassword] = useState("");
   const dispatch = useDispatch();
-  const total = useSelector((state) => state.emails.total);
+ 
+  
 
   const handSubmit = (e) => {
     e.preventDefault();
 
-    var data = {password: password }
+    const data = {password: password }
 
-    var config = {
+    const config = {
       method: "post",
       url: `http://cristianherreradevapi.herokuapp.com/api/emails`,
       headers: {},
@@ -33,11 +35,13 @@ function Login() {
 
        dispatch(passwordAction(password));
 
-       let emails = response.data.emails;
+       const emails = response.data.emails;
        dispatch(emailsAction(emails))
 
-       let totalEmails = response.data.total;
+       const totalEmails = response.data.total;
        dispatch(totalAction(totalEmails));
+
+       dispatch(scrollDownAction(totalEmails))
 
 
 

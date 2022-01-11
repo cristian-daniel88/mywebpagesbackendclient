@@ -5,6 +5,7 @@ import emailsReducer from "./emails/emailsReducer";
 
 //reducers
 import passwordReducer from "./password/passwordReducer";
+import scrollReducer from "./scroll/scrollReducer";
 
 
 
@@ -16,7 +17,8 @@ const persistConfig = {
   
   const rootReducer = combineReducers({
       password: passwordReducer,
-      emails: emailsReducer
+      emails: emailsReducer,
+      scroll: scrollReducer
   });
   
   export default persistReducer(persistConfig, rootReducer);

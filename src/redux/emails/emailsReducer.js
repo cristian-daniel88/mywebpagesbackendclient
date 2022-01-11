@@ -1,15 +1,19 @@
-import { EMAILS, TOTAL } from './emailsAction';
+import { axiosDelete } from '../../axios/axios';
+import { DELETE, EMAILS, TOTAL } from './emailsAction';
 
 
 
 const INITIAL_STATE = {
  
   total: null,
-  emails: null
+  emails: null,
+ 
   
 };
 
+
 const emailsReducer = (state = INITIAL_STATE, action) => {
+  
   switch (action.type) {
  
 
@@ -24,6 +28,12 @@ const emailsReducer = (state = INITIAL_STATE, action) => {
           ...state,
           emails: action.payload,
         };
+
+       case DELETE:
+         return {
+           ...state,
+           emails: axiosDelete(action.uid, action.password)
+         }
   
   
 
