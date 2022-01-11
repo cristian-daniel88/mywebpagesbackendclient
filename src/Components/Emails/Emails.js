@@ -13,7 +13,7 @@ import { axiosDelete } from "../../axios/axios";
 import { passwordAction } from "../../redux/password/passwordActions";
 import { emailsAction, totalAction } from "../../redux/emails/emailsAction";
 import axios from "axios";
-import { scrollMenos5 } from "../../redux/scroll/scrollActions";
+import { scrollDownAction, scrollMenos5 } from "../../redux/scroll/scrollActions";
 
 function Emails() {
   const emails = useSelector((state) => state.emails.emails);
@@ -28,8 +28,8 @@ function Emails() {
 
   const handleDelete = async (uid) => {
     axiosDelete(uid, password);
-    var data = { password: password };
-    var config = {
+    const data = { password: password };
+    const config = {
       method: "post",
       url: `http://cristianherreradevapi.herokuapp.com/api/emails`,
       headers: {},
@@ -50,6 +50,8 @@ function Emails() {
 
         let totalEmails = response.data.total;
         dispatch(totalAction(totalEmails));
+
+        dispatch(scrollDownAction(totalEmails))
       })
       .catch(function (error) {
         console.log(error);
@@ -68,6 +70,7 @@ function Emails() {
 
     
       if(scroll.scrollDown < 0) {
+
         return
       }
  
