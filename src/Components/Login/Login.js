@@ -1,14 +1,21 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { useDispatch} from "react-redux";
 import { emailsAction, totalAction } from "../../redux/emails/emailsAction";
 import { passwordAction } from "../../redux/password/passwordActions";
 import { scrollDownAction} from "../../redux/scroll/scrollActions";
-import { Form, FormContainer } from "./LoginStyles";
+import { Button, Form, FormBack, FormContainer, Input, Label } from "./LoginStyles";
 const axios = require("axios");
 
 function Login() {
   const [password, setPassword] = useState("");
   const dispatch = useDispatch();
+
+  useEffect(() => {
+    
+    return () => {
+      
+    }
+  }, [])
  
   
 
@@ -55,17 +62,22 @@ function Login() {
   return (
     <FormContainer>
       <Form onClick={handSubmit}>
-        <label style={{ marginBottom: "10px" }}>Password</label>
+  
+        <Label>Password</Label>
 
-        <input
-          type="password"
-          onChange={(e) => {
-            setPassword(e.target.value);
-          }}
+
+        <Input
+           type="password"
+           onChange={(e) => {
+             setPassword(e.target.value);
+           }}
+        
         />
-
-        <button style={{ marginTop: "50px" }}>Enter</button>
+        
+      
+        <Button>Enter</Button>
       </Form>
+      {/* <FormBack/> */}
     </FormContainer>
   );
 }
