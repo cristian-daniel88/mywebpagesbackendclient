@@ -105,10 +105,10 @@ function Emails() {
         {emails?.map((value, i) => {
           return (
             <Li key={value.uid}>
-              <AlertDelete uid={value.uid}/>
+              <AlertDelete/>
               <div
                 style={{
-                  cursor: "pointer",
+                  
                   textAlign: "right",
                   fontSize: "1.5em",
                   background: "#d8f6ff",
@@ -116,6 +116,7 @@ function Emails() {
               >
                 <div>
                   <FaTrashAlt
+                    style={{cursor: "pointer"}}
                     onClick={() => {
                       handleDelete(value.uid);
                     }}
