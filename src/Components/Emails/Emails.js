@@ -1,4 +1,4 @@
-import React, { useEffect, useRef } from "react";
+import React, { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 
 import {
@@ -13,14 +13,18 @@ import { axiosDelete } from "../../axios/axios";
 import { passwordAction } from "../../redux/password/passwordActions";
 import { emailsAction, emailsDeleteAction, totalAction } from "../../redux/emails/emailsAction";
 import axios from "axios";
-import { scrollMenos5 } from "../../redux/scroll/scrollActions";
+import { scrollErrorAction, scrollMenos5 } from "../../redux/scroll/scrollActions";
 import Loading from "../Loading/Loading";
+import AlertDelete from "../AlertDelete/AlertDelete";
+import { idAction } from "../../redux/deleteQuestion/deleteOkActions";
 
 function Emails() {
   const emails = useSelector((state) => state.emails.emails);
   const total = useSelector((state) => state.emails.total);
   const password = useSelector((state) => state.password.password);
   const dispatch = useDispatch();
+  const ok = useSelector(state => state.ok.ok)
+
 
   const scroll = useSelector((state) => state.scroll);
 
@@ -28,11 +32,22 @@ function Emails() {
   
 
   const handleDelete = async (uid) => {
-    axiosDelete(uid, password);
+    dispatch(scrollErrorAction())
+    dispatch(idAction(uid))
+  
 
-   dispatch(emailsDeleteAction(uid))
-
+    if (ok) {
+      
+      axiosDelete(uid, password);
+      
+      dispatch(emailsDeleteAction(uid))
+      
+    }
+   
+    
   };
+
+
 
   async function scrollDown () {
 
@@ -81,7 +96,7 @@ function Emails() {
       window.removeEventListener('scroll', scrollDown);
     }
   }, [scrollDown]);
-
+  
   return (
     <EmailsContainer>
       <TotalContainer>Total Emails: {total}</TotalContainer>
@@ -90,6 +105,7 @@ function Emails() {
         {emails?.map((value, i) => {
           return (
             <Li key={value.uid}>
+              <AlertDelete uid={value.uid}/>
               <div
                 style={{
                   cursor: "pointer",

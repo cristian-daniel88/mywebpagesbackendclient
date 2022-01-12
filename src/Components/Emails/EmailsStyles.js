@@ -4,6 +4,7 @@ export const EmailsContainer = styled.div`
 width: 90%;
 height: auto;
 margin: auto;
+position: relative;
 
 
 
