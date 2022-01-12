@@ -28,7 +28,8 @@ export const Li = styled.div`
 margin-bottom: 50px;
 background: #d8d8d8;
 
-border: solid 4px #ccc0cc;
+border: solid 4px #592c59;
+padding: 3px;
 border-radius: 5px;
 font-size: 1.5em;
 overflow-wrap: break-word;

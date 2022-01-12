@@ -17,14 +17,11 @@ function AlertDelete(props) {
   const deleted = useSelector((state) => state.scroll.error);
   const password = useSelector((state) => state.password.password);
   const uid = useSelector(state => state.ok.id);
- 
-
   const dispatch = useDispatch();
+ 
   const handleDelete = async () => {
     dispatch(scrollErrorAction());
-
     axiosDelete(uid, password);
-
     dispatch(emailsDeleteAction(uid));
   };
 

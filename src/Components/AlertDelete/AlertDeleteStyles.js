@@ -5,8 +5,8 @@ export const DeleteContainer = styled.div`
 width: 100%;
 height: 100vh;
 position: fixed;
-background: rgb(52 27 92 / 82%);
-opacity: .9;
+background: rgb(52 27 92 / 12%);
+
 left: 0;
 display: ${(props) => (props.deleted ? 'flex' :'none')  };
 justify-content: center;
