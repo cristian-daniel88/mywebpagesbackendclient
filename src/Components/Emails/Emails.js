@@ -64,7 +64,7 @@ function Emails() {
       var data = { password: password };
       var config = {
         method: "post",
-        url: `http://cristianherreradevapi.herokuapp.com/api/emails?limite=${total}&desde=${scroll.scrollDown}`,
+        url: `https://cristianherreradevapi.herokuapp.com/api/emails?limite=${total}&desde=${scroll.scrollDown}`,
         headers: {},
         data: data,
       };

@@ -26,7 +26,7 @@ function Login() {
 
     const config = {
       method: "post",
-      url: `http://cristianherreradevapi.herokuapp.com/api/emails`,
+      url: `https://cristianherreradevapi.herokuapp.com/api/emails`,
       headers: {},
       data: data,
     };

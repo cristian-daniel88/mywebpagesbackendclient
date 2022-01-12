@@ -16,7 +16,7 @@ export const axiosDelete = (uid, password, dispatch)=> {
 
     var config = {
       method: "delete",
-      url: "http://cristianherreradevapi.herokuapp.com/api/emails",
+      url: "https://cristianherreradevapi.herokuapp.com/api/emails",
       headers: {},
       data: data,
     };
