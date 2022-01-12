@@ -33,7 +33,8 @@ const emailsReducer = (state = INITIAL_STATE, action) => {
        case DELETE:
          return {
            ...state,
-           emails: deleteUtil( state.emails,action.payload)
+           emails: deleteUtil( state.emails,action.payload),
+           total : state.total - 1
          }
   
   
